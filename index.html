@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>お問い合わせフォーム</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+
+    <!-- CSS  -->
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- Page Content goes here -->
+        <div class="row contact_form">
+            <form id="form_submit" method="post">
+                <div id="contact_input_data">
+                    <h1 class="title">お問い合わせフォーム</h1>
+
+                    <!--お名前-->
+                    <div class="row">
+                        <div class="col s12 l4 contact_form_label">
+                            お名前
+                            <span class="contact_form_necessary">必須</span>
+                        </div>
+                        <div class="col s6 l4 input-field">
+                            <input name="fname" id="fname" type="text" placeholder="First Name" required>
+                        </div>
+                        <div class="col s6 l4 input-field">
+                            <input name="lname" id="lname" type="text" placeholder="Last Name" required>
+                        </div>
+                    </div>
+
+                    <!--性別-->
+                    <div class="row">
+                        <div class="col s5 l4 contact_form_label">
+                            性別
+                        </div>
+                        <div class="col s7 l8">
+                            <div class="gender_choice">
+                                <label class="radio-inline">
+                            <input class="with-gap" name="gender" id="gender-1" type="radio" checked/>
+                            <span class="bold-text black-text">男性</span>
+                        </label>
+                                <label class="radio-inline">
+                            <input class="with-gap" name="gender" id="gender-2" type="radio"/>
+                            <span class="bold-text black-text">女性</span>
+                        </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--ご住所-->
+                    <div class="row">
+                        <div class="col s5 l4 contact_form_label">
+                            ご住所
+                        </div>
+                        <div class="col s7 l8 input-field">
+                            <span class="bold-text p-1">〒</span><input type="number" name="post_code_1" id="post_code_1" pattern="\d{3}" placeholder="001">－<input type="number" name="post_code_2" id="post_code_2" pattern="\d{4}" placeholder="0001">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 l8 offset-l4">
+                            <textarea name="address" id="address" rows="4"></textarea>
+                        </div>
+                    </div>
+
+                    <!--電話番号-->
+                    <div class="row">
+                        <div class="col s5 l4 contact_form_label">
+                            電話番号
+                            <span class="contact_form_necessary">必須</span>
+                        </div>
+                        <div class="col s7 l8 input-field">
+                            <input type="tel" name="phone" id="phone" placeholder="0123456789" required>
+                            <span id="check_phone" style="display: none" class="red-text">電話番号は数字だけ入力してください</span>
+                        </div>
+                    </div>
+
+                    <!--メール-->
+                    <div class="row">
+                        <div class="col s5 l4 contact_form_label">
+                            メール
+                            <span class="contact_form_necessary">必須</span>
+                        </div>
+                        <div class="col s7 l8 input-field">
+                            <input type="mail" name="mail" id="mail" placeholder="contact@mail.com" required>
+                            <span id="invalid_mail" style="display: none;" class="red-text">Your email address is invalid</span>
+                        </div>
+                    </div>
+
+                    <!--確認メール-->
+                    <div class="row">
+                        <div class="col s5 l4 contact_form_label">
+                            確認メール
+                        </div>
+                        <div class="col s7 l8 input-field">
+                            <input type="mail" name="refill_mail" id="re_fill_mail" placeholder="contact@mail.com">
+                            <span id="re_check_mail" class="red-text" style="display: none">メールアドレスと同じアドレスを入力してください</span>
+                        </div>
+                    </div>
+
+                    <!--お問合せ種類-->
+                    <div class="row">
+                        <div class="col s12 l4 contact_form_label">
+                            お問合せ種類
+                        </div>
+                        <div class="col s12 l8 input-field select-required">
+                            <select name="お問い合わせの種類" id="contact_type" class="browser-default" onchange="ShowHideDiv()">
+                            <option value=""disabled selected>ご選択ください</option>
+                            <option value="勉強会について">勉強会について</option>
+                            <option value="レギュラー用の事種提出">レギュラー用の事種提出</option>
+                            <option value="新しいクラスの情報">新しいクラスの情報</option>
+                            <option value="個人プロジェクトの窓口">個人プロジェクトの窓口</option>
+                            <option value="定別ミーティングの欠席に関する連絡">定別ミーティングの欠席に関する連絡</option>
+                            <option value="そぞれのご意見">そぞれのご意見</option>
+                        </select>
+                        </div>
+                    </div>
+
+                    <!--レベルと資格-->
+                    <div id="contact_type_class" class="row" style="display: none;">
+                        <div class="col s12 l4 contact_form_label">
+                            レベルと資格
+                            <span class="contact_form_necessary">必須</span>
+                        </div>
+                        <div class="col s12 l8 input-field">
+                            <input type="text" name="contact_type_level" id="contact_type_level">
+                        </div>
+                    </div>
+
+                    <!--お問い合わせ内容-->
+                    <div class="row">
+                        <div class="col s12 l4 contact_form_label">
+                            お問い合わせ内容
+                        </div>
+                        <div class="col s12 l8 input-field">
+                            <textarea name="content_detail" id="content_detail" rows="6" placeholder="こちらにお問合せ内容をご入力ください。"></textarea>
+                        </div>
+                    </div>
+
+                    <!--Student Check-->
+                    <div class="student_check">
+                        <p>
+                            <label>
+                          <input type="checkbox" id="checkbox" class="filled-in" />
+                          <span class="student_check_span">学生の時はこちらをチェックする</span>
+                        </label>
+                        </p>
+                    </div>
+
+                    <!--Button-->
+                    <div>
+                        <button type="submit" class="send_button waves-effect waves-light hide-on-small-only">上記に同意してお問い合わせを送信する</button>
+                        <button type="submit" class="send_button waves-effect waves-light hide-on-med-and-up">お問合せを送信する</button>
+                    </div>
+                </div>
+            </form>
+
+            <!--Data Output|送信されたお問い合わせフォームデータ！-->
+            <div id="contact_output_data" style="display: none">
+                <h1 class="title">送信されたお問い合わせフォームデータ！</h1>
+                <div class="form_label">お名前:<span id="output-name"></span></div><br>
+                <div class="form_label">性別：<span id="output-gender"></span></div><br>
+                <div class="form_label">ご住所：<span id="output-address"></span></div><br>
+                <div class="form_label">電話番号：<span id="output-phone"></span></div><br>
+                <div class="form_label">メール：<span id="output-mail"></span></div><br>
+                <div class="form_label">確認メール：<span id="output-re_fill_mail"></span></div><br>
+                <div class="form_label">お問合わせ種類：<span id="output-contact_type"></span></div><br>
+                <div class="form_label">レベルと資格：<span id="output-contact_type_level"></span></div><br>
+                <div class="form_label">お問合わせ内容：<span id="output-content_detail"></span></div><br>
+                <div class="form_label">学生：<span id="output-checkbox"></span></div><br>
+            </div>
+
+        </div>
+    </div>
+
+    <!--  Scripts-->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
