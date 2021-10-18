@@ -50,7 +50,7 @@ sumitForm.addEventListener("submit", onsubmit);
 
 function onsubmit(e) {
     e.preventDefault();
-    //name
+    
     var fname = document.getElementById("fname").value;
     var lname = document.getElementById("lname").value;
     var gender1 = document.getElementById("gender-1");
@@ -67,7 +67,7 @@ function onsubmit(e) {
     var student = document.getElementById("checkbox");
 
 
-
+    //name
     if (fname, lname === "") {
         alert("お名前を入れてください！");
         return false;
